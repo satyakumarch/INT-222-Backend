@@ -1,0 +1,23 @@
+{
+  "name": "satyabackend",
+  "version": "1.0.0",
+  "description": "\"# Ba\"",
+  "main": "Buffer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "satya",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.3",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.5.0",
+    "nodemailer": "^6.9.13",
+    "openai": "^4.0.0",
+    "socket.io": "^4.7.5"
+  },
+  "keywords": [],
+  "devDependencies": {}
+}
