@@ -228,6 +228,179 @@
 
 **[ Back to Top ⬆ ](#table-of-contents---node-js)**
 
+31. ### Can node js perform cryptographic functions?
+.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+
+44. ###	What Is A Child_process Module In NodeJs?
+
+    
+    Node.js supports the creation of child processes to help in parallel processing along with the event-driven model.<br/>
+
+	The Child processes always have three streams <child.stdin>, child.stdout, and child.stderr. The <stdio> stream of the parent process shares the streams of the child process.<br/>
+
+	Node.js provides a <child_process> module which supports following three methods to create a child process.<br/>
+
+		**exec** – <child_process.exec> method runs a command in a shell/console and buffers the output.
+		**spawn** – <child_process.spawn> launches a new process with a given command.
+		**fork** – <child_process.fork> is a special case of the spawn() method to create child processes.
+	.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+
+### Table of Contents - Express JS
+
+
+| No. | Questions |
+| --- | --------- |
+|   | **Express JS** |
+| 1 | [What is ExpressJS?](#what-is-expressjs)|
+| 2 | [What are some of the salient features of express?](#what-are-some-of-the-salient-features-of-express)|
+| 3 | [Explain with an example a working of a simple express app?](#explain-with-an-example-a-working-of-a-simple-express-app)|
+| 4 | [Mention few properties of request parameter in express?](#mention-few-properties-of-request-parameter-in-express)|
+| 5 | [How to get the name parameters in express?](#how-to-get-the-name-parameters-in-express)|
+| 6 | [How to retrieve the get query string parameters using express? ?](#how-to-retrieve-the-get-query-string-parameters-using-express)|
+| 7 | [How to send a response back using express?](#how-to-send-a-response-back-using-express)|
+| 8 | [How to set http response status using express?](#how-to-set-http-response-status-using-express)|
+| 9 | [What are the different http status codes?](#what-are-the-different-http-status-codes)|
+| 10 | [Mention few properties of request parameter in express?](#mention-few-properties-of-request-parameter-in-express)|
+| 11 | [How can you change http header value of a response?](#how-can-you-change-http-header-value-of-a-response)|
+| 12 | [How to redirect to other pages server-side?](#how-to-redirect-to-other-pages-server-side)|
+| 13 | [How does routing work in express?](#how-does-routing-work-in-express)|
+| 14 | [What are the tasks that a middleware can do?](#what-are-the-tasks-that-a-middleware-can-do)|
+| 15 | [What are the different types of middleware?](#what-are-the-different-types-of-middleware)|
+| 16 | [How to serve static assests from express? ](#how-to-serve-static-assests-from-express)|
+| 17 | [How to provide file download using express?](#how-to-provide-file-download-using-express)|
+| 18 | [How to use the Response.cookie() method to manipulate your cookies?](#how-to-use-the-response-cookie-()-method-to-manipulate-your-cookies)|
+| 19 | [How to manage sessions using express?](#how-to-manage-sessions-using-express)|
+| 20 | [How to provide file download using express?](#how-to-provide-file-download-using-express)|
+| 21 | [How To Allow Cors In Expressjs  Explain With An Example?](#how-to-allow-cors-in-expressjs--explain-with-an-example)|
+
+
+
+## Express Js
+	|secure|Marks the cookie HTTPS only|
+	|signed| 	set the cookie to be signed|
+	|sameSite|Value of SameSite|
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+19. ###   How to manage sessions using express?
+	
+	We’ll use the express-session module, which is maintained by the Express team.When implemented, every user of you API or website will be assigned a unique session, and this allows you to store the userstate.as by default Express requests are sequential and no request can be linked to each other. There is no way to know if this request comes from a client that already performed a request previously.
+	```
+	const express = require('express')
+	const session = require('express-session')
+
+	const app = express()
+	app.use(session(
+	'secret': '343ji43j4n3jn4jk3n'
+	))
+	```
+	All solutions store the session id in a cookie, and keep the data server-side. The client will receive the session id in a cookie, and will send it along with every HTTP request.
+
+	We’ll reference that server-side to associate the session id with the data stored locally.
+
+	Memory is the default, it requires no special setup on your part, it’s the simplest thing but it’s meant only for development purposes.
+
+	The best choice is a memory cache like Redis, for which you need to setup its own infrastructure.
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+20. ###   How to process forms using Express? 
+	
+	The form data will be sent in the POST request body.
+
+	To extract it, you will use the express.urlencoded() middleware, provided by Express:
+	```
+	const express = require('express')
+	const app = express()
+
+	app.use(express.urlencoded())
+	```
+	Now you need to create a POST endpoint on the /submit-form route, and any data will be available on Request.body:
+	```
+	app.post('/submit-form', (req, res) => {
+	const username = req.body.username
+	//...
+	res.end()
+	})
+	```
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+21. ###   How To Allow Cors In Expressjs  Explain With An Example? 
+  ```
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+7. ### What are the mongoose middlewares?
+
+   Middleware are functions that run at specific stages of a pipeline. Mongoose supports middleware for the following operations:<br/>
+
+	Aggregate<br/>
+	Document<br/>
+	Model<br/>
+	Query<br/>
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+8. ### How to query data using mongoose?
+
+   Mongoose has a very rich API that handles many complex operations supported by MongoDB. Consider a query where we can incrementally build query components.<br/>
+
+	In this example, we are going to:<br/>
+
+	Find all users<br/>
+	Skip the first 100 records<br/>
+	Limit the results to 10 records<br/>
+	Sort the results by the firstName field<br/>
+	Select the firstName<br/>
+	Execute that query<br/>
+	```
+	User.find()                   // find all users
+         .skip(100)                // skip the first 100 items
+         .limit(10)                // limit to 10 items
+         .sort({firstName: 1}      // sort ascending by firstName
+         .select({firstName: true} // select firstName only
+         .exec()                   // execute the query
+         .then(docs => {
+            console.log(docs)
+          })
+         .catch(err => {
+            console.error(err)
+          })
+	```
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+9. ### What is Population in mongoose?
+
+  Population is the process of automatically replacing the specified paths in the document with document(s) from other collection(s). We may populate a single document, multiple documents, plain object, multiple plain objects, or all objects returned from a query.
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+10. ### What is Datamasking?
+
+  Data masking is a method of creating a structurally similar but inauthentic version of an organization's data that can be used for purposes such as software testing and user training. The purpose is to protect the actual data while having a functional substitute for occasions when the real data is not required.<br/>
+  you can simply use **$project** to hide the mobile field<br/>
+  Or perhaps you have an extra field in your document to indicate whether the information is public or not, i.e. given documents<br/>
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+11. ### What is hashing and explain how it works?
+
+  Hashing is the process of converting an input of any length into a fixed size string of text, using a mathematical function.
+  ![hashing](https://miro.medium.com/max/4000/0*Zkd2fcKuVGirbNpl.png)
+  When the user provides a input it will be converted to a value of fixed length by a hashing function and the resulting value will be called as hashed text, and it should be always unique for different value
+  
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
 
 
 
