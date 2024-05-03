@@ -282,9 +282,144 @@
 
 
 ## Express Js
+	}
+	function(req, res) {
+		res.end('Hello World!')
+	}
+	function(req, res) {
+		res.json({title:'Hello World!'})
+	}
+	```
+
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+
+8. ### How to set http response status using express?   
+	
+	we can either use **res.status()** or **res.sendStatus()**
+	```
+	res.status(404).send('File not found')
+	
+	//if sendStatus we no need to write send method , i will pre send a few inbuilt messages upon using that
+	
+	res.sendStatus(200)
+	// === res.status(200).send('OK')
+
+	res.sendStatus(403)
+	// === res.status(403).send('Forbidden')
+
+	res.sendStatus(404)
+	// === res.status(404).send('Not Found')
+
+	res.sendStatus(500)
+	// === res.status(500).send('Internal Server Error')
+	```
+
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+9. ### What are the different http status codes?   
+	
+	Routing is the process of determining what should happen when a URL is called, or also which parts of the application should handle a specific incoming request.<br/>
+
+	In the Hello World example we used this code<br/>
+
+	```
+    app.get('/', function(req, res) { 
+     /* */ 
+	})
+	//This creates a route that maps accessing the root domain URL / using the HTTP GET method to the response we want to provide.
+	```
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+14. ###   What are the tasks that a middleware can do? 
+	
+	Middleware functions can perform the following tasks:<br/>
+
+    Execute any code.<br/>
+    Make changes to the request and the response objects.<br/>
+    End the request-response cycle.<br/>
+    Call the next middleware function in the stack.<br/>
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+15. ###   What are the different types of middleware?
+	
+	An Express application can use the following types of middleware:<br/>
+
+    
+    Application-level middleware<br/>
+    Router-level middleware<br/>
+    Error-handling middleware<br/>
+    Built-in middleware<br/>
+    Third-party middleware
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+16. ###    How to serve static assests from express?
+	
+	It’s common to have images, CSS and more in a public subfolder, and expose them to the root level:
+
+    
+    ```
+	const express = require('express')
+	const app = express()
+
+	app.use(express.static('public'))
+
+	app.listen(3000, () => console.log('Server ready'))
+	```
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+17. ###   How to provide file download using express?
+	
+	Express provides a handy method to transfer a file as attachment: Response.download().<br/>
+
+	Once a user hits a route that sends a file using this method, browsers will prompt the user for download.<br/>
+
+	The Response.download() method allows you to send a file attached to the request, and the browser instead of showing it in the page, it will save it to disk.<br/>
+	```
+	app.get('/', (req, res) => res.download('./file.pdf'))
+	```
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+18. ###   How to use the Response.cookie() method to manipulate your cookies?
+	
+	Cookies are small pieces of data sent from a website and are stored in user's web browser while user is browsing that website. Every time the user loads that website back, the browser sends that stored data back to website or server, to distinguish user's previous 	activity.
+	
+
+	```
+	res.cookie('username', 'Adam')
+	
+	This method accepts a third parameter which contains various options:
+	res.cookie('username', 'Adam', { domain: '.bangalore.com', path: '/administrator', secure: true })
+
+	res.cookie('username', 'Adam', { expires: new Date(Date.now() + 900000), httpOnly: true })
+	
+	//clear cookie
+	res.clearCookie('username')
+	```
+	
+	The most useful parameters you can set are:
+	| Value | Description |
+	| ----- | ----------- |
+	| domain | the cookie domain name|
+	|expires|set the cookie expiration date. If missing, or 0, the cookie is a session cookie|
+	|httpOnly|set the cookie to be accessible only by the web server. See HttpOnly|
+	|maxAge|set the expiry time relative to the current time, expressed in milliseconds|
+	|path|the cookie path. Defaults to /|
 	|secure|Marks the cookie HTTPS only|
 	|signed| 	set the cookie to be signed|
 	|sameSite|Value of SameSite|
+
+	
+**[ Back to Top ⬆ ](#table-of-contents---express-js)**
+
+
 
 	
 **[ Back to Top ⬆ ](#table-of-contents---express-js)**
@@ -336,7 +471,85 @@
 **[ Back to Top ⬆ ](#table-of-contents---express-js)**
 
 21. ###   How To Allow Cors In Expressjs  Explain With An Example? 
+
+
+
+### Table of Contents - MongoDB and Mongoose
+
+| No. | Questions |
+| --- | --------- |
+|   | **MongoDB and Mongoose** |
+| 1 | [What is MongoDB?](#what-is-mongodb)|
+| 2 | [What are the difference between NoSQL and SQL](#what-are-the-difference-between-nosql-and-sql)|
+| 3 | [How to establish MongoDB database connection in a node application?](#how-to-establish-mongodb-database-connection-in-a-node-application)|
+| 4 | [What are virtual property in mongoose](#what-are-virtual-property-in-mongoose)|
+| 5 | [How can we add or create our own instance methods in mongoose](#how-can-we-add-or-create-our-own-instance-methods-in-mongoose)|
+| 6 | [How can we add or create our own static methods in mongoose](#how-can-we-add-or-create-our-own-static-methods-in-mongoose)|
+| 7 | [What are the mongoose middlewares?](#what-are-the-mongoose-middlewares)|
+| 8 | [How to query data using mongoose?](#how-to-query-data-using-mongoose)|
+| 9 | [What is Population in mongoose](#what-is-population-in-mongoose)|
+| 10| [What is Datamasking?](#what-is-datamasking)|
+| 11| [What is hashing and explain how it works?](#what-is-hashing-and-explain-how-it-works)|
+| 12| [What are salts and why are they so important?](#what-are-salts-and-why-are-they-so-important)|
+| 13| [What are pepper and why are they so important?](#what-are-pepper-and-why-are-they-so-important)|
+| 14| [What are JWT?](#what-are-jwt)|
+| 15| [What are different authentication methods?](#what-are-different-authentication-methods)|
+| 16| [What are disadvantages of using session based authentication?](#what-are-disadvantages-of-using-session-based-authentication)|
+| 17| [What are disadvantages of using jwt based authentication?](#what-are-disadvantages-of-using-jwt-based-authentication)|
+
   ```
+
+1. ### What is MongoDB?
+	console.log()
+	console.log(user.fullName)  // Output the full name
+	//The code above will output the following:
+
+	{ _id: 5a7a4248550ebb9fafd898cf,
+		firstName: 'Thomas',
+		lastName: 'Anderson' }
+	//Thomas Anderson
+  ```
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+
+5. ### How can we add or create our own instance methods in mongoose?
+
+   We can create custom helper methods on the schema and access them via the model instance. These methods will have access to the model object and they can be used quite creatively
+   
+   ```
+	userSchema.methods.details = function() {
+	return this.username + ' - ' +  this.email
+	}
+	//This method will be accessible via a model instance:
+	const user = new User({
+	username: 'user2',
+	email: 'user2@gmail.com'
+	})
+	```
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+
+6. ### How can we add or create our own static methods in mongoose?
+
+  Similar to instance methods, we can create static methods on the schema. Let’s create a method to retrieve all users in the database:
+  ```
+  userSchema.statics.getUsers = function() {
+  return new Promise((resolve, reject) => {
+    this.find((err, docs) => {
+      if(err) {
+        console.error(err)
+        return reject(err)
+      }
+      resolve(docs)
+			})
+		})
+	}
+  ```
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
 
 **[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
 
@@ -401,6 +614,409 @@
   When the user provides a input it will be converted to a value of fixed length by a hashing function and the resulting value will be called as hashed text, and it should be always unique for different value
   
 **[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+13. ### What are pepper and why are they so important?
+
+	A pepper is a secret added to an input such as a password prior to being hashed with a cryptographic hash function<br/>
+	A pepper performs a comparable role to a salt, but while a salt is not secret (merely unique) and can be stored alongside the hashed output<br/> A pepper is secret and must not be stored with the output. The hash and salt are usually stored in a database, but a pepper must be stored separately (e.g. in a configuration file) to prevent it from being obtained by the attacker in case of a database breach. <br/> Where the salt only has to be long enough to be unique, a pepper has to be secure to remain secret (at least 112 bits is recommended by NIST), otherwise an attacker only needs one known entry to crack the pepper.<br/> Finally, the pepper must be generated anew for every application it is deployed in, otherwise a breach of one application would result in lowered security of another application.
+
+
+  
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+14. ### What are JWT?
+
+	JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object<br/>
+	some scenarios where JSON Web Tokens are useful:<br/>
+	**Authorization**: This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used across different domains.<br/>
+
+	**Information Exchange**: JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example, using public/private key pairs—you can be sure the senders are who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn't been tampered with.<br/>
+	
+	![jwt](https://research.securitum.com/wp-content/uploads/sites/2/2019/10/jwt_ng1_en.png)
+
+
+  
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+15. ### What are different authentication methods?
+
+	
+
+    Use **API keys** if you expect developers to build internal applications that don’t need to access more than a single user’s data.<br/>
+    Use **OAuth** access tokens if you want users to easily provide authorization to applications without needing to share private data or dig through developer documentation.<br/>
+	Use **session cookies**, here server is responsible for creating a session for the particular user when the user log's in, after that the id of the session is stored in a cookie on the user browser. For every request sent by the user, the cookie will be sent too, where the server can compare the session id from the cookie with the session information stored on the server so the user identity is verified.
+  
+
+
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+
+16. ### What are disadvantages of using session based authentication?
+
+	
+
+   **Compromised Secret Key** : The best and the worst thing about JWT is that it relies on just one Key. Consider that the Key is leaked by a careless or a rogue developer/administrator, the whole system is compromised!<br/>
+  **Cannot manage client from the server**<br/>**Cannot push Messages to clients** <br/>**Crypto-algo can be deprecated**<br/>**Data Overhead** : The size of the JWT token will be more than that of a normal Session token<br/>Complicated to understand: JWT uses cryptographic Signature algorithms to verify the data and get the user-id from the token. Understanding the Signing Algo in itself requires basics of cryptography. <br/>
+
+
+
+  
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+
+17. ### What are disadvantages of using jwt based authentication?
+
+	
+
+   **Session based authentication**:<br/> Because the sessions are stored in the server’s memory, scaling becomes an issue when there is a huge number of users using the system at once.<br/>Cookies normally work on a single domain or subdomains and they are normally disabled by browser if they work cross-domain (3rd party cookies). It poses issues when APIs are served from a different domain to mobile and web devices.
+
+
+
+  
+**[ Back to Top ⬆ ](#table-of-contents---mongodb-and-mongoose)**
+
+      ### Table of Contents - Golang
+
+| No. | Questions |
+| --- | --------- |
+|   | **Golang** |
+| 1 | [What is Golang?](#what-is-golang)|
+| 2 | [What are the pros and cons of Golang?](#what-are-the-pros-and-cons-of-golang)|
+| 3 | [What kind of projects are suitable to be built in Golang?](#what-kind-of-projects-are-suitable-to-be-built-in-golang)
+| 4 | [Is Golang an object oriented language?](#is-golang-an-object-oriented-language)
+| 5 | [What are the data types in Golang?](#what-are-the-data-types-in-golang)
+| 6 | [Can you return multiple values from a function?](#can-you-return-multiple-values-from-a-function)
+| 7 | [What is a GOPATH?](#what-is-a-gopath)
+| 8 | [What are Goroutines?](#what-are-goroutines)
+| 9 | [What is nil in Go?](#what-is-nil-in-go)
+| 10 | [What is the difference between array and slice in Go?](#what-is-the-difference-between-array-and-slice-in-go)
+| 11 | [How does a go compiler work?](#how-does-a-go-compiler-work)
+| 12 | [What is an Interface and Why do you use it?](#what-is-an-interface-and-why-do-you-use-it)
+| 13 | [What are concurrency and parralism and what is the difference between both?](#what-are-concurrency-and-parralism-and-what-is-the-difference-between-both)
+| 14 | [What are the difference between goroutines and threads?](#what-are-the-difference-between-goroutines-and-threads)
+| 15 | [What are channels for?](#what-are-channels-for)
+| 16 | [Can you do something in goroutines using channels?](#can-you-do-something-in-goroutines-using-channels)
+| 17 | [What is a Closure?](#what-is-a-closure)
+| 18 | [What are runtime  and runtime packages?](#what-are-runtime--and-runtime-packages)
+| 19 | [How can you get how many cores your computer has?](#how-can-you-get-how-many-cores-your-computer-has)
+| 20 | [How would you tell a goroutine to use less core than what you have?](#how-would-you-tell-a-goroutine-to-use-less-core-than-what-you-have)
+| 21 | [How would you determine the type of a variable and Which package to use for it?](#how-would-you-determine-the-type-of-a-variable-and-which-package-to-use-for-it)
+| 22 | [What all types can map store?](#what-all-types-can-map-store)
+| 23 | [What are microservices?](#what-are-microservices)
+| 24 | [Why are there no classes in Go?](#why-are-there-no-classes-in-go)
+| 25 | [Difference between Compile time and runtime?](#difference-between-compile-time-and-runtime)
+| 26 | [How to generate a true random number in golang?](#how-to-generate-a-true-random-number-in-golang)
+| 27 | [Why are goroutines light-weight?](#why-are-goroutines-light-weight)
+| 28 | [If capacity is not defined in slice, what would the capacity be?](#if-capacity-is-not-defined-in-slice,-what-would-the-capacity-be)
+| 29 | [What is the easiest way to check if a slice is empty?](#what-is-the-easiest-way-to-check-if-a-slice-is-empty)
+| 30 | [What is an advantage of Go evaluating implicit types at compile time?](#what-is-an-advantage-of-go-evaluating-implicit-types-at-compile-time)
+1. ### What is Golang?
+
+
+   Golang is a statically typed, compiled programming language designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson. Golang was designed at Google in 2007 to improve programming productivity in an era of multicore, networked machines and large codebases.
+
+
+**[ Back to Top ⬆ ](#table-of-contents---golang)**
+
+
+2. ### What are the pros and cons of Golang?
+
+	**Pros:**
+	* Ease of use
+    * A Smart Standard library
+    * Strong security built-in
+    * Garbage collected language.
+    * Minimalism & Readability
+    * Concurrency
+
+
+    **Cons:**
+    * No generics
+    * Error-handling boilerplate & lack of compile-time checks unhandled errors
+    * Shortage of high-level parallelism and concurrency features
+
+
+
+**[ Back to Top ⬆ ](#table-of-contents---golang)**
+
+
+3. ### What kind of projects are suitable to be built in Golang?
+     * Cloud services 
+     * Media platforms
+     * Broadcast providers
+     * Projects with microservice architecture
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**
+
+4. ### Is Golang an object oriented language?
+    
+    Golang has types and methods and allows an object-oriented style of programming, there is no type hierarchy.Golang has some properties of object oriented programming like Encapsulation , Composition , but it doesn't have inheritance , classes , function overloading .
+
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**
+
+5. ### What are the data types in Golang?
+
+    1. **Basic type**: Numbers, strings, and booleans .
+    2. **Aggregate type**: Array and structs .
+    3. **Reference type**: Pointers, slices, maps, functions, and channels .
+    4. **Interface type**
+
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**
+
+6. ### Can you return multiple values from a function?
+
+    Yes. A Go function can return multiple values, each separated by commas in the return statement.
+
+    ```go
+	    package main
+
+        import "fmt"
+        
+        func foo() (string, string) {
+           return "foo", "ball"
+        }
+        
+        func main() {
+           fmt.Println(foo())
+        }
+	```
+
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**    
+
+
+7. ### What is a GOPATH?
+
+
+    The GOPATH environment variable specifies the location of your workspace. It defaults to a directory named go inside your home directory    <br/>  
+    The command go env GOPATH prints the effective current GOPATH; it prints the default location if the environment variable is unset.          
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+8. ### What are Goroutines?
+
+    Goroutines are incredibly lightweight “threads” managed by the go runtime. They enable us to create asynchronous parallel programs that can execute some tasks far quicker than if they were written in a sequential manner.
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+9. ### What is nil in Go?
+    nil is a predeclared identifier in Go that represents zero values for pointers, interfaces, channels, maps, slices and function types.
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+10. ### What is the difference between array and slice in Go ?
+        import "fmt"
+          
+        // Creating an interface
+        type tank interface {
+          
+            // Methods
+            Tarea() float64
+            Volume() float64
+        }
+          
+        type myvalue struct {
+            radius float64
+            height float64
+        }
+          
+        // Implementing methods of
+        // the tank interface
+        func (m myvalue) Tarea() float64 {
+          
+            return 2*m.radius*m.height +
+                2*3.14*m.radius*m.radius
+        }
+          
+        func (m myvalue) Volume() float64 {
+          
+            return 3.14 * m.radius * m.radius * m.height
+        }
+          
+        // Main Method
+        func main() {
+          
+            // Accessing elements of
+            // the tank interface
+            var t tank
+            t = myvalue{10, 14}
+            fmt.Println("Area of tank :", t.Tarea())
+            fmt.Println("Volume of tank:", t.Volume())
+        }    
+	```
+
+    Interfaces can make code clearer, shorter, more readable, and they can provide a good API between packages, or clients (users) and servers (providers).
+
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+
+  13. ### What are concurrency and parralism and what is the difference between both?
+   
+    **Concurrency** :  
+    Defination 1 : Dealing with multiple things at once. <br/>
+    Defination 2 : A Composition of independently executing processes(Example: suppose there are two tasks A and B , the way this work is A task done 70% meanwhile it has to wait for something , so it picks up task B and try to complete if suppose B task has to wait at 60% , for something then it picks up A task them completes it and comes back to B )    
+
+    **Parralism** : 
+     Defination 1 : Parallelism is about doing lots of things at once. <br/>
+     Defination 2 : It is the simultaneous execution of (possibly related) computations. (Example: suppose there are two tasks A and B , it takes both tasks and try to complete both together )
+
+    ![cocurrency_parllel](/img/cocurrency_parllel.jpg)
+ 
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+  14. ### What are the difference between goroutines and threads?
+      **Threads** : A thread is just a sequence of instructions that can be executed independently by a processor. Threads  use a lot of memory due to their large stack and requires call to OS for resources (such as memory) which is slow. so doesn’t always guarantee a better performance than processes in this multi-core processor world.
+
+      **Goroutines**:Goroutines exists only in the virtual space of go runtime and not in the OS. and A goroutine is created with initial only 2KB of stack size. Each function in go already has a check if more stack is needed or not and the stack can be copied to another region in memory with twice the original size. This makes goroutine very light on resources.
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+  15. ### What are channels for?
+     
+      Channels are the pipes that connect concurrent goroutines. You can send values into channels from one goroutine and receive those values into another goroutine.
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**    
+
+  16. ### Can you do something in goroutines using channels?
+         * Channels are goroutine-safe and can store and pass values between goroutines
+         * Channels provide FIFO semantics.
+         * Channels cause goroutines to block and unblock, which we just learned about. 
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+  17. ### What is a Closure?
+    
+         A closure is a function value that references variables from outside its body. The function may access and assign to the referenced variables.<br/>
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+  18. ### What are runtime  and runtime packages?
+  
+      The runtime library implements garbage collection, concurrency, stack management, and other critical features of the Go language. The Package runtime contains operations that interact with Go's runtime system, such as functions to control goroutines.
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+
+  19. ### How can you get how many cores your computer has?
+      With the help of runtime package
+     
+      ```go
+	     package main
+
+         import (  
+              "fmt"
+              "runtime"
+                )
+
+            func main() {
+            fmt.Println(runtime.NumCPU())
+            }
+	  ```
+   
+  **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+ 20. ### How would you tell a goroutine to use less core than what you have?
+                }
+			```
+        * **reflect.ValueOf.Kind() Function** : Using the golang inbuilt package reflect we can find the Type of variable
+
+             ```go
+			    package main
+  
+              
+                import (
+                    "fmt"
+                    "reflect"
+                )
+
+                func main(){
+                var string_type =  "Hello Go";
+                var complex_type =  complex(9, 15);
+                
+                 fmt.Println("string_type", reflect.ValueOf(string_type).Kind())
+                 fmt.Println("complex_type = ", reflect.TypeOf(complex_type).Kind())
+                }
+			```
+        * **%T with Printf** : You can use Printf also to find value of variable
+
+            ```go
+			    package main
+  
+             
+                import (
+                    "fmt"
+                    "reflect"
+                )
+
+                func main(){
+                var string_type =  "Hello Go";
+                var complex_type =  complex(9, 15);
+                
+                 fmt.Printf("string_type=%T\n", string_type)
+                 fmt.Printf("complex_type =%T\n", complex_type)
+                }
+			```
+      
+      **[ Back to Top ⬆ ](#table-of-contents---golang)**   
+ 22. ### What all types can map store?
+| 7 | [What does Eventually Consistent Mean?](#what-does-eventually-consistent-mean)
+| 8 | [What is indexing in SQL?](#what-is-indexing-in-sql)
+| 9 | [How does SQL create an Index?](#how-does-sql-create-an-index)
+| 10 | [What is difference between index scan and index only scan?](#what-is-difference-between-index-scan-and-index-only-scan)
+
+1. ### What is ACID Model in Database?
+   
+    The ACID database transaction model ensures that a performed transaction is always consistent. This makes it a good fit for businesses which deal with online transaction processing (e.g: finance institutions) or online analytical processing (e.g: data warehousing). These organizations need database systems which can handle many small simultaneous transactions. There must be zero tolerance for invalid states
+
+
+**[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
+2. ### What does ACID acronym mean?
+    * A - Atomicity
+    * C - Consistency
+    * I - Isolation
+    * D - Durability
+
+3. ### Explain in brief the ACID Model?
+    * **Atomicity**: Each transaction is either properly carried out or the process halts and the database reverts back to the state before the transaction started. This ensures that all data in the database is valid .<br/>
+    * **Consistency**: The database must remain in a consistent state after any transaction. No transaction should have any adverse effect on the data residing in the database , also a DB should have Atomicity and Isolation for this property.<br/>
+    * **Isolation**: Any reads or writes performed on the database should not be impacted by other reads and writes of separate transactions occurring on the same database.<br/>
+    * **Durability**: The database should be durable enough to hold all its latest updates even if the system fails or restarts .
+
+**[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
+4. ### What are the read phenomena in Isolation?
+    * **Dirty Read**:A Dirty read is the situation when a transaction reads a data that has not yet been committed .<br/>
+    * **Non Repeatable read**: Non Repeatable read occurs when a transaction reads same row twice, and get a different value each time.<br/>
+    * **Phantom Read**:  Phantom Read occurs when two same queries are executed, but the rows retrieved by the two, are differen i.e a new row might have been inserted or deleted
+
+**[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
+5. ### What are the four Isolation levels?
+    * **Read Uncommitted** – Read Uncommitted is the lowest isolation level. In this level, one transaction may read not yet committed changes made by other transaction
+
+    * **Read Committed** – This isolation level guarantees that any data read is committed at the moment it is read. Thus it does not allows dirty read. The transaction holds a read or write lock on the current row, and thus prevent other transactions from reading, updating or deleting it.
+    
+    * **Repeatable Read** - This is the most restrictive isolation level. The transaction holds read locks on all rows it references and writes locks on all rows it inserts, updates, or deletes. Since other transaction cannot read, update or delete these rows, consequently it avoids non-repeatable read.
+
+    * **Serializable** - Transactions are serialized , occur one by one
+
+ **[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
+6. ### Which isolation levels can prevent problems that occur in read phenomena?   
+    Refer Image for a comparison  
+
+     ![isolation](/img/acid.png)
+
+
+
+**[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
+
+7. ### What does Eventually Consistent Mean ?
+    
+    **Eventual Consistency** concept is that while a database may have some inconsistencies at any point in time, it will eventually become consistent when all updates cease i.e eventually all nodes will receive the latest consistent updates.
+
+**[ Back to Top ⬆ ](#table-of-contents---database-engineering)**
+
 
 
 
