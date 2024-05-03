@@ -136,4 +136,98 @@
 **[ Back to Top ⬆ ](#table-of-contents---node-js)**
 
 
+12. ### Explain the concept of middleware in Nodejs?
+    In Node.js, the spawn() is used to launch a new process with the provided set of commands. This method doesn’t create a new V8 instance and just one copy of the node module is active on the processor. When your child process returns a large amount of data to the Node you can invoke this method.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+16. ### Explain the purpose of ExpressJS package?
+
+    Express.js is a framework built on top of Node.js that facilitates the management of the flow of data between server and routes in the server-side applications. It is a lightweight and flexible framework that provides a wide range of features required for the web as well as mobile application development. Express.js is developed on the middleware module of Node.js called connect. The connect module further makes use of http module to communicate with Node.js. Thus, if you are working with any of the connect based middleware modules, then you can easily integrate with Express.js.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+17. ### Explain the usage of a buffer class in Nodejs?
+
+    Buffer class in Node.js is used for storing the raw data in a similar manner of an array of integers. But it corresponds to a raw memory allocation that is located outside the V8 heap. It is a global class that is easily accessible can be accessed in an application without importing a buffer module. Buffer class is used because pure JavaScript is not compatible with binary data. So, when dealing with TCP streams or the file system, it’s necessary to handle octet streams.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+18. ### How does Nodejs handle the child threads?
+
+    In general, Node.js is a single threaded process and doesn’t expose the child threads or thread management methods. But you can still make use of the child threads using spawn() for some specific asynchronous I/O tasks which execute in the background and don’t usually execute any JS code or hinder with the main event loop in the application. If you still want to use the threading concept in your application you have to include a module called ChildProcess explicitly.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+19. ### Explain stream in Nodejs along with its various types?
+
+    Streams in Node.js are the collection of data similar to arrays and strings. They are objects using which you can read data from a source or write data to a destination in a continuous manner. It might not be available at once and need not to have fit in the memory. These streams are especially useful for reading and processing a large set of data. In Node.js, there are four fundamental types of streams:<br/>
+    Readable: Used for reading large chunks of data from the source.<br/>
+    Writeable: Use for writing large chunks of data to the destination.<br/>
+    Duplex: Used for both the functions; read and write.<br/>
+    Transform: It is a duplex stream that is used for modifying the data.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+
+20. ### Describe the exit codes of Nodejs?
+
+    In Node.js, exit codes are a set of specific codes which are used for finishing a specific process. These processes can include the global object as well. Below are some of the exit codes used in Node.js:<br/>
+	*Uncaught fatal exception<br/>
+	*Unused<br/>
+	*Fatal Error<br/>
+	*Internal Exception handler Run-time failure<br/>
+	*Internal JavaScript Evaluation Failure<br/>
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+21. ### Is cryptography supported in Nodejs?
+    cluster.fork();
+	}
+
+	cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+		});
+	} 
+	else {
+		// Workers can share any TCP connection
+		// In this case it is an HTTP server
+	http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('hello world\n');
+	}).listen(8000);
+
+	console.log(`Worker ${process.pid} started`);
+	}
+	
+	//Running Node.js will now share port 8000 between the workers:
+	
+	$ node server.js
+	Master 3596 is running
+	Worker 4324 started
+	Worker 4520 started
+	Worker 6056 started
+	Worker 5644 started
+	```
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+29. ### What is the datatype of console?
+
+    The datatype of console is an **object**
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+30. ### Which are the different console methods available?
+
+    There are around 21 inbuilt console methods , we can also built our own prototypes using new Console constructor function<br/>
+	here are a few popular one's<br/>
+	1.**console.clear()** will clear only the output in the current terminal viewport for the Node.js binary.<br/>
+	2.**console.error([data][, ...args])** Prints to stderr with newline. Multiple arguments can be passed, with the first used as the primary message and all additional used as substitution<br/>
+	3.**console.table(tabularData[, properties])**  a table with the columns of the properties of tabularData (or use properties) and rows of tabularData and log it.
+
+**[ Back to Top ⬆ ](#table-of-contents---node-js)**
+
+
+
 
