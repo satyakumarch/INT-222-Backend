@@ -1,0 +1,15 @@
+{
+  "name": "chatapplication",
+  "version": "1.0.0",
+  "description": "about realtime chat application",
+  "main": "socketio",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mamta shatma",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "socket.io": "^4.7.5"
+  }
+}

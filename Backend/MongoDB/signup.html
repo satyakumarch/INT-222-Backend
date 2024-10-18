@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <style>
+        /* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eddfdf;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #c8daaa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid yellow;
+}
+
+h2 {
+    color: #ed0808;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #7307ef;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #e10e0e;
+    border-radius: 4px;
+    background-color: #c8daed;
+    box-sizing: border-box; /* Makes sure padding doesn't affect width */
+}
+
+/* Enhancing the focus state for better accessibility */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Styling the submit button */
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: rgb(149, 224, 99);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <dic class="container">
+        <h2>Registation Form</h2>
+        <form id="registationForm" action="/signup" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="fname" name="fname" required>
+
+            <label for="lname">last Name</label>
+            <input type="text" id="lname" name="lname" required>
+
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" required>
+        </form>
+    </dic>
+</body>
+</html>
