@@ -1,0 +1,7 @@
+{
+    "type":1,
+    "bool":true,
+    "age":1,
+    "obj":{"age1":20,"color":"red"},
+    "obj1":["my","int222",2,true]
+}

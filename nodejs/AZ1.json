@@ -1,0 +1,8 @@
+{
+    "rollno1":123,
+    "name":"mapping",
+    "status":true,
+    "myhome":{"price":200,"area":235,"location":"phagwara"},
+    "courses":["INT222","INT219","CSE326",{"course1":5,"course2":2}]
+
+}
